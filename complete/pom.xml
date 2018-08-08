@@ -13,6 +13,14 @@
         <version>2.0.3.RELEASE</version>
     </parent>
 	<packaging>war</packaging>
+	<profiles>
+    <profile>
+        <id>profile1</id>
+        <properties>
+            <spring.boot.mainclass>hello.Application</spring.boot.mainclass>
+        </properties>
+    </profile>
+</profiles>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,7 +58,11 @@
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
+                            <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                        <mainClass>${spring.boot.mainclass}</mainClass>
+                    </configuration>
                     </execution>
                 </executions>
             </plugin>
